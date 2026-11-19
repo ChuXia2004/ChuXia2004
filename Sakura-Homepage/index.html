@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f7">
+  <meta name="description" content="在代码与樱花之间，记录每一次成长。">
+  <title>初夏的小花园 · Sakura Homepage</title>
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/animation.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <script src="./config/config.js"></script>
+  <script src="./js/theme.js" defer></script>
+  <script src="./js/sakura.js" defer></script>
+  <script src="./js/github.js" defer></script>
+  <script src="./js/scroll.js" defer></script>
+  <script src="./js/main.js" defer></script>
+</head>
+<body>
+  <canvas id="sakura-canvas" aria-hidden="true"></canvas>
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="返回首页"><span class="brand-mark">❀</span><span data-config="site.name">Sakura</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="main-nav" aria-label="主导航">
+      <a href="#home" data-nav="home">首页</a>
+      <a href="#about" data-nav="about">关于</a>
+      <a href="#projects" data-nav="projects">项目</a>
+      <a href="#skills" data-nav="skills">技能</a>
+      <a href="#github" data-nav="github">GitHub</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="sakura-toggle" type="button" aria-label="关闭樱花效果" title="樱花开关">🌸</button>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="切换夜间模式" title="切换主题">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-glow"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow" data-config="hero.eyebrow">A LITTLE PLACE ON THE INTERNET</p>
+        <div class="avatar-wrap">
+          <img id="profile-avatar" src="./assets/images/avatar-placeholder.svg" alt="个人头像" class="avatar">
+          <span class="avatar-flower">✿</span>
+        </div>
+        <h1><span data-config="hero.greeting">你好，欢迎来到</span><br><em data-config="profile.name">初夏</em><span data-config="hero.suffix">的小花园</span></h1>
+        <p class="hero-description" data-config="hero.description">在代码与樱花之间，记录每一次成长。</p>
+        <div class="hero-buttons">
+          <a class="button button-primary" href="#projects" data-config="hero.primaryButton">探索我的项目</a>
+          <a class="button button-ghost" id="hero-github-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">访问 GitHub ↗</a>
+        </div>
+        <div class="scroll-hint"><span></span>向下探索</div>
+      </div>
+      <div class="hero-decoration decoration-left">✿</div>
+      <div class="hero-decoration decoration-right">❀</div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">A LITTLE INTRODUCTION</p>
+        <h2 data-config="about.title">关于我</h2>
+        <p data-config="about.subtitle">认识一下这个花园的主人</p>
+        <span class="heading-flower">✿</span>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-avatar-column">
+          <img id="about-avatar" src="./assets/images/avatar-placeholder.svg" alt="个人头像" class="about-avatar">
+          <span class="about-name" data-config="profile.name">初夏</span>
+          <span class="about-location" data-config="profile.tagline">保持好奇，慢慢生长。</span>
+        </div>
+        <div class="about-copy">
+          <h3 data-config="about.greeting">你好呀！很高兴认识你。</h3>
+          <p data-config="about.content">这里是我的个人小空间。我喜欢探索新技术，也喜欢把灵感变成真实的小作品。希望你能在这里发现一点有趣的东西。</p>
+          <div class="hobby-list" id="hobby-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects-section" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">THINGS I'VE MADE</p>
+        <h2 data-config="projects.title">小小作品集</h2>
+        <p data-config="projects.subtitle">每一个项目，都是一次新的尝试</p>
+        <span class="heading-flower">✿</span>
+      </div>
+      <div class="project-grid" id="project-grid"></div>
+    </section>
+
+    <section class="section skills-section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">TOOLS IN MY GARDEN</p>
+        <h2 data-config="skills.title">我的工具箱</h2>
+        <p data-config="skills.subtitle">正在学习，也持续探索</p>
+        <span class="heading-flower">✿</span>
+      </div>
+      <div class="skills-list reveal" id="skills-list"></div>
+    </section>
+
+    <section class="section github-section" id="github">
+      <div class="section-heading reveal">
+        <p class="eyebrow">LET'S CONNECT</p>
+        <h2 data-config="github.title">在 GitHub 找到我</h2>
+        <p data-config="github.subtitle">代码是分享想法的另一种方式</p>
+        <span class="heading-flower">✿</span>
+      </div>
+      <div class="github-card reveal">
+        <div class="github-profile">
+          <div class="github-mark">⌘</div>
+          <div><strong id="github-username">username</strong><span>GitHub</span></div>
+        </div>
+        <div class="github-stats">
+          <div class="stat"><strong id="repo-count">—</strong><span>公开仓库</span></div>
+          <div class="stat"><strong id="follower-count">—</strong><span>Followers</span></div>
+          <div class="stat"><strong id="following-count">—</strong><span>Following</span></div>
+        </div>
+        <a class="button button-primary" id="github-profile-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">访问我的主页 ↗</a>
+        <p class="api-note" id="github-note">公开数据由 GitHub API 提供</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-flower">❀</div>
+    <p data-config="footer.message">感谢你来到我的小花园。</p>
+    <span id="copyright"></span>
+    <a href="#top" class="footer-top">回到顶部 ↑</a>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部">↑</button>
+</body>
+</html>

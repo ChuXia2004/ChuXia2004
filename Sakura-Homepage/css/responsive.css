@@ -1,0 +1,38 @@
+@media (max-width: 800px) {
+  .site-header { gap: 12px; padding: 0 17px; }
+  .main-nav { gap: 16px; }
+  .about-card { grid-template-columns: 170px 1fr; gap: 25px; padding: 30px; }
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .site-header { top: 9px; width: calc(100% - 22px); min-height: 58px; border-radius: 17px; }
+  .brand { font-size: 18px; }
+  .menu-toggle { display: inline-grid; place-items: center; margin-left: auto; }
+  .main-nav {
+    display: none; position: absolute; top: 66px; left: 0; right: 0; margin: 0; padding: 15px;
+    flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 16px;
+    background: var(--header-bg); backdrop-filter: blur(18px); box-shadow: var(--shadow);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { width: 100%; padding: 10px; text-align: center; }
+  .header-actions { gap: 5px; }
+  .icon-button { width: 33px; height: 33px; }
+  .section { width: calc(100% - 34px); padding: 76px 0; }
+  .hero { min-height: 92vh; padding-top: 110px; }
+  .hero h1 { font-size: clamp(27px, 8vw, 38px); }
+  .hero-description { max-width: 290px; margin-left: auto; margin-right: auto; font-size: 13px; }
+  .scroll-hint { margin-top: 48px; }
+  .hero-decoration { font-size: 48px; }
+  .decoration-left { left: 0; top: 27%; }
+  .decoration-right { right: 0; bottom: 17%; }
+  .about-card { grid-template-columns: 1fr; gap: 24px; padding: 27px 22px; }
+  .about-avatar { width: 115px; height: 115px; }
+  .about-copy { text-align: center; }
+  .hobby-list { justify-content: center; }
+  .project-grid { grid-template-columns: 1fr; gap: 14px; }
+  .project-card { min-height: 0; }
+  .github-card { padding: 28px 20px; }
+  .github-stats { gap: 5px; }
+  .stat strong { font-size: 22px; }
+  .back-to-top { right: 15px; bottom: 15px; }
+}
