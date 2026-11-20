@@ -13,8 +13,8 @@ window.SITE_CONFIG = {
     name: "初夏",
     tagline: "保持好奇，慢慢生长。",
     avatar: "./assets/images/avatar.png",
-    github: "https://github.com/username",
-    githubUsername: "username"
+    github: "https://github.com/ChuXia2004",
+    githubUsername: "ChuXia2004"
   },
   hero: {
     eyebrow: "A LITTLE PLACE ON THE INTERNET",
