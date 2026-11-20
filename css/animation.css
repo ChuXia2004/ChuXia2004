@@ -7,3 +7,22 @@
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* 玻璃质感卡片：透出背后飘落的花瓣 */
+.about-card,
+.github-card,
+.project-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 25px rgba(120, 80, 90, 0.08);
+}
+
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .github-card,
+[data-theme="dark"] .project-card {
+  background: rgba(35, 32, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
