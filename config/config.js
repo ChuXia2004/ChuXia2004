@@ -26,8 +26,8 @@ window.SITE_CONFIG = {
   about: {
     title: "关于我",
     subtitle: "认识一下这个花园的主人",
-    greeting: "你好呀！很高兴认识你。",
-    content: "这里是我的个人小空间。我喜欢探索新技术，也喜欢把灵感变成真实的小作品。希望你能在这里发现一点有趣的东西。",
+    greeting: "你好呀！很高兴认识你。> ⤙ <。",
+    content: "这里是我的个人小空间。我喜欢探索新技术，也喜欢把灵感变成真实的小作品。希望你能在这里发现一点有趣的东西。˗ˋˏᰔᩚˎˊ˗",
     hobbies: ["⌨️ 编程", "🎨 绘画", "🎧 音乐", "🌱 持续学习"]
   },
   projects: {
@@ -60,7 +60,7 @@ window.SITE_CONFIG = {
   skills: {
     title: "我的工具箱",
     subtitle: "正在学习，也持续探索",
-    items: ["HTML5", "CSS3", "JavaScript", "Python", "Git", "Markdown"]
+    items: ["HTML5", "CSS3", "JavaScript", "Python", "Git", "Markdown"",Clip Studio Paint"]
   },
   github: {
     title: "在 GitHub 找到我",
@@ -75,7 +75,7 @@ window.SITE_CONFIG = {
     sakuraSpeed: 1
   },
   footer: {
-    message: "感谢你来到我的小花园。愿你也拥有温柔而闪亮的每一天。",
+    message: "感谢你来到我的小花园。愿你也拥有温柔而闪亮的每一天(◍＞◡＜◍)。",
     copyrightName: "初夏"
   }
 };
