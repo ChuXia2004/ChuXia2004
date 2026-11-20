@@ -21,6 +21,10 @@
   let running = settings.sakuraEnabled !== false;
   let rafId = 0;
   let lastTime = 0;
+  // 首次进入时花瓣从零开始慢慢长满，而不是一开网页就满屏
+  const GROW_MS = 1900;
+  let grown = 0;
+  let firstRun = true;
 
   function makePetal(randomY = false) {
     return {
@@ -32,7 +36,8 @@
       swing: Math.random() * Math.PI * 2,
       spin: (Math.random() - .5) * .035,
       rotation: Math.random() * Math.PI * 2,
-      alpha: .38 + Math.random() * .45
+      alpha: .38 + Math.random() * .45,
+      fade: 0
     };
   }
 
@@ -68,7 +73,7 @@
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rotation);
-    ctx.globalAlpha = p.alpha;
+    ctx.globalAlpha = p.alpha * p.fade;
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(0, -p.size);
@@ -87,7 +92,13 @@
     const step = delta / 16.667;
     const color = document.documentElement.dataset.theme === "dark" ? "#f2b7d0" : "#e9a9b9";
     ctx.clearRect(0, 0, width, height);
-    for (const p of petals) {
+    if (grown < petals.length) {
+      grown = Math.min(petals.length, grown + (delta / GROW_MS) * Math.max(petals.length, 1));
+    }
+    const visible = Math.min(petals.length, Math.max(1, Math.floor(grown)));
+    for (let i = 0; i < visible; i++) {
+      const p = petals[i];
+      if (p.fade < 1) p.fade = Math.min(1, p.fade + .06 * step);
       p.swing += .012 * step;
       p.x += (p.drift + Math.sin(p.swing) * .55) * step;
       p.y += p.fall * step;
@@ -101,6 +112,7 @@
   function start() {
     if (rafId || !running || reducedMotion) return;
     lastTime = 0;
+    if (firstRun) { grown = 0; firstRun = false; }
     rafId = requestAnimationFrame(frame);
   }
 
