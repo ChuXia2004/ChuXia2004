@@ -6,8 +6,16 @@
 
   const settings = window.SITE_CONFIG?.settings || {};
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const count = Math.max(0, Math.min(100, Number(settings.sakuraCount) || 34));
+  const baseCount = Math.max(0, Math.min(100, Number(settings.sakuraCount) || 34));
   const speed = Number(settings.sakuraSpeed) || 1;
+
+  // 花瓣密度按屏幕尺寸缩放，手机上不会显得过密
+  function petalCountFor(viewportWidth, viewportHeight) {
+    const shortSide = Math.min(viewportWidth, viewportHeight);
+    const ratio = Math.min(1, shortSide / 720);
+    return Math.max(6, Math.round(baseCount * (0.42 + 0.58 * ratio)));
+  }
+  let count = petalCountFor(window.innerWidth, window.innerHeight);
 
   let width = 0, height = 0, petals = [];
   let running = settings.sakuraEnabled !== false;
@@ -41,9 +49,14 @@
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    if (!petals.length || widthChanged) {
+    const nextCount = petalCountFor(width, height);
+    if (!petals.length || widthChanged || petals.length > nextCount * 1.6) {
+      count = nextCount;
       petals = Array.from({ length: count }, () => makePetal(true));
     } else {
+      count = nextCount;
+      while (petals.length < count) petals.push(makePetal(true));
+      if (petals.length > count) petals.length = count;
       for (const p of petals) {
         if (p.x > width) p.x = Math.random() * width;
         if (p.y > height + 25) p.y = Math.random() * height;
