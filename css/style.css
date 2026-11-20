@@ -117,7 +117,8 @@ header, main, footer, nav, section { position: relative; z-index: 2; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
 .tag { padding: 4px 9px; font-size: 10px; }
 .project-link { margin-top: 17px; color: var(--pink-deep); font-size: 12px; }
-.skills-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 13px; max-width: 780px; margin: 0 auto; }
+.skills-list { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 780px; margin: 0 auto; }
+.skill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 13px; }
 .skill-chip { padding: 12px 22px; background: var(--surface); font-size: 13px; box-shadow: 0 5px 18px rgba(157,112,123,.06); }
 .github-card { display: flex; flex-direction: column; gap: 25px; text-align: center; max-width: 720px; margin: 0 auto; }
 .github-profile { display: flex; align-items: center; gap: 13px; text-align: left; }
