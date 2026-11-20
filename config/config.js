@@ -58,9 +58,13 @@ window.SITE_CONFIG = {
     ]
   },
   skills: {
-    title: "我的工具箱",
-    subtitle: "正在学习，也持续探索",
-    items: ["HTML5", "CSS3", "JavaScript", "Python", "Git", "Markdown", "Clip Studio Paint"]
+    title: "我的工具架",
+    subtitle: "顺手，也还在学习",
+    items: ["HTML5", "CSS3", "JavaScript", "Python", "Markdown", "Git", "Clip Studio Paint"],
+    groups: [
+      ["HTML5", "CSS3", "JavaScript", "Python", "Markdown", "Git"],
+      ["Clip Studio Paint"]
+    ]
   },
   github: {
     title: "在 GitHub 找到我",
