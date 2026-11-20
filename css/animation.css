@@ -1,8 +1,6 @@
 /* 页面滚动进入视口时的轻柔显现 */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s ease, transform .75s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
-.project-card { animation: soft-arrive .6s both; }
-@keyframes soft-arrive { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
@@ -27,10 +25,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* 打开网页：整页柔和淡入，避免生硬闪入 */
-body { animation: page-in .5s ease-out both; }
-@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
-
+/* 页面淡入交给 html::before 的雾层，body 上不做 opacity 动画，否则会破坏卡片的毛玻璃采样 */
 /* 顶部导航轻轻落下 */
 .site-header { animation: header-drop .7s cubic-bezier(.22,.9,.3,1) both; }
 @keyframes header-drop {
