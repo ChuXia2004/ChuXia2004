@@ -12,7 +12,7 @@ window.SITE_CONFIG = {
   profile: {
     name: "初夏",
     tagline: "保持好奇，慢慢生长。",
-    avatar: "./assets/images/avatar-placeholder.svg",
+    avatar: "./assets/images/avatar.png",
     github: "https://github.com/username",
     githubUsername: "username"
   },
