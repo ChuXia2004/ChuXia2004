@@ -28,7 +28,7 @@ window.SITE_CONFIG = {
     subtitle: "认识一下这个花园的主人",
     greeting: "你好呀！很高兴认识你。> ⤙ <。",
     content: "这里是我的个人小空间。我喜欢探索新技术，也喜欢把灵感变成真实的小作品。希望你能在这里发现一点有趣的东西。˗ˋˏᰔᩚˎˊ˗",
-    hobbies: ["⌨️ 编程", "🎨 绘画", "🎧 音乐", "🌱 持续学习"]
+    hobbies: ["⌨️ 编程", "🎨 绘画", "✈️ 旅行", "🌱 持续学习"]
   },
   projects: {
     title: "小小作品集",
@@ -60,7 +60,7 @@ window.SITE_CONFIG = {
   skills: {
     title: "我的工具箱",
     subtitle: "正在学习，也持续探索",
-    items: ["HTML5", "CSS3", "JavaScript", "Python", "Git", "Markdown"]
+    items: ["HTML5", "CSS3", "JavaScript", "Python", "Git", "Markdown", "Clip Studio Paint"]
   },
   github: {
     title: "在 GitHub 找到我",
