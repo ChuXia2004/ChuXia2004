@@ -38,9 +38,17 @@
   });
 
   const skills = document.getElementById("skills-list");
-  (cfg.skills?.items || []).forEach(skill => {
-    const span = document.createElement("span"); span.className = "skill-chip"; span.textContent = skill;
-    skills?.appendChild(span);
+  const skillGroups = Array.isArray(cfg.skills?.groups) && cfg.skills.groups.length
+    ? cfg.skills.groups.map(group => Array.isArray(group) ? group : (group.items || []))
+    : [cfg.skills?.items || []];
+  skillGroups.forEach(groupItems => {
+    if (!groupItems.length) return;
+    const row = document.createElement("div"); row.className = "skill-row";
+    groupItems.forEach(skill => {
+      const span = document.createElement("span"); span.className = "skill-chip"; span.textContent = skill;
+      row.appendChild(span);
+    });
+    skills?.appendChild(row);
   });
 
   const copyright = document.getElementById("copyright");
