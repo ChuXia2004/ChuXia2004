@@ -38,7 +38,7 @@ window.SITE_CONFIG = {
         name: "Sakura Homepage",
         description: "一个日式简约、带有樱花粒子背景的个人主页模板。",
         tags: ["HTML", "CSS", "JavaScript"],
-        url: "https://github.com/username/Sakura-Homepage",
+        url: "https://github.com/ChuXia2004/ChuXia2004.github.io",
         icon: "🌸"
       },
       {
