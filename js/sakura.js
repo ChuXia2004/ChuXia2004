@@ -4,20 +4,16 @@
   const ctx = canvas?.getContext("2d");
   if (!canvas || !ctx) return;
 
-  const config = window.SITE_CONFIG?.settings || {};
-  let width = 0, height = 0, petals = [], running = config.sakuraEnabled !== false;
+  const settings = window.SITE_CONFIG?.settings || {};
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const count = Math.max(0, Math.min(100, Number(config.sakuraCount) || 34));
-  const speed = Number(config.sakuraSpeed) || 1;
+  const count = Math.max(0, Math.min(100, Number(settings.sakuraCount) || 34));
+  const speed = Number(settings.sakuraSpeed) || 1;
 
-  function resize() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth; height = window.innerHeight;
-    canvas.width = width * ratio; canvas.height = height * ratio;
-    canvas.style.width = width + "px"; canvas.style.height = height + "px";
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    petals = Array.from({ length: count }, () => makePetal(true));
-  }
+  let width = 0, height = 0, petals = [];
+  let running = settings.sakuraEnabled !== false;
+  let rafId = 0;
+  let lastTime = 0;
+
   function makePetal(randomY = false) {
     return {
       x: Math.random() * width,
@@ -31,12 +27,36 @@
       alpha: .38 + Math.random() * .45
     };
   }
-  function drawPetal(p) {
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const nextWidth = window.innerWidth;
+    const nextHeight = window.innerHeight;
+    if (nextWidth === width && nextHeight === height && petals.length) return;
+    const widthChanged = Math.abs(nextWidth - width) > 2;
+    width = nextWidth;
+    height = nextHeight;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    if (!petals.length || widthChanged) {
+      petals = Array.from({ length: count }, () => makePetal(true));
+    } else {
+      for (const p of petals) {
+        if (p.x > width) p.x = Math.random() * width;
+        if (p.y > height + 25) p.y = Math.random() * height;
+      }
+    }
+  }
+
+  function drawPetal(p, color) {
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rotation);
     ctx.globalAlpha = p.alpha;
-    ctx.fillStyle = Math.random() > 1 ? "#fff" : (document.documentElement.dataset.theme === "dark" ? "#f2b7d0" : "#e9a9b9");
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(0, -p.size);
     ctx.bezierCurveTo(p.size * 1.1, -p.size * .8, p.size * 1.2, p.size * .4, 0, p.size);
@@ -44,19 +64,39 @@
     ctx.fill();
     ctx.restore();
   }
-  function frame() {
-    if (!running || document.hidden || reducedMotion) return;
+
+  function frame(now) {
+    rafId = 0;
+    if (!running || reducedMotion) return;
+    if (document.hidden) { lastTime = 0; return; }
+    const delta = lastTime ? Math.min(now - lastTime, 50) : 16.7;
+    lastTime = now;
+    const step = delta / 16.667;
+    const color = document.documentElement.dataset.theme === "dark" ? "#f2b7d0" : "#e9a9b9";
     ctx.clearRect(0, 0, width, height);
     for (const p of petals) {
-      p.swing += .012;
-      p.x += p.drift + Math.sin(p.swing) * .55;
-      p.y += p.fall;
-      p.rotation += p.spin;
+      p.swing += .012 * step;
+      p.x += (p.drift + Math.sin(p.swing) * .55) * step;
+      p.y += p.fall * step;
+      p.rotation += p.spin * step;
       if (p.y > height + 25 || p.x < -30 || p.x > width + 30) Object.assign(p, makePetal());
-      drawPetal(p);
+      drawPetal(p, color);
     }
-    requestAnimationFrame(frame);
+    rafId = requestAnimationFrame(frame);
   }
+
+  function start() {
+    if (rafId || !running || reducedMotion) return;
+    lastTime = 0;
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function stop() {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
+    lastTime = 0;
+  }
+
   function setRunning(value) {
     running = value;
     canvas.style.display = running ? "block" : "none";
@@ -65,11 +105,19 @@
       button.setAttribute("aria-label", running ? "关闭樱花效果" : "开启樱花效果");
       button.title = running ? "关闭樱花效果" : "开启樱花效果";
     }
-    if (running) requestAnimationFrame(frame);
+    if (running) start();
+    else { stop(); ctx.clearRect(0, 0, width, height); }
   }
+
   button?.addEventListener("click", () => setRunning(!running));
-  document.addEventListener("visibilitychange", () => { if (!document.hidden && running) requestAnimationFrame(frame); });
-  window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else if (running) start();
+  });
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("orientationchange", () => setTimeout(resize, 120));
+
   resize();
-  if (reducedMotion) setRunning(false); else setRunning(running);
+  if (reducedMotion) setRunning(false);
+  else setRunning(running);
 })();
