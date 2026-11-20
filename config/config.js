@@ -65,7 +65,7 @@ window.SITE_CONFIG = {
   github: {
     title: "在 GitHub 找到我",
     subtitle: "代码是分享想法的另一种方式",
-    username: "username",
+    username: "chuxia2004",
     showStats: true
   },
   settings: {
