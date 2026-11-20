@@ -31,7 +31,7 @@ window.SITE_CONFIG = {
     hobbies: ["⌨️ 编程", "🎨 绘画", "⛰️ 旅行", "🌱 持续学习"]
   },
   projects: {
-    title: "小小作品集",
+    title: "花园角落的小制作",
     subtitle: "每一个项目，都是一次新的尝试",
     items: [
       {
