@@ -42,18 +42,18 @@ window.SITE_CONFIG = {
         icon: "🌸"
       },
       {
-        name: "我的第二个项目",
-        description: "在这里写下项目简介，可以介绍它解决了什么问题。",
-        tags: ["开发中", "Open Source"],
-        url: "https://github.com/",
-        icon: "🧸"
+        name: "KiraAI Steam Plugin",
+        description: "把 Steam 接进聊天里的小插件：查游戏库存、好友列表和个人资料，顺手看一眼市场物价。",
+        tags: ["Python", "Plugin", "Steam"],
+        url: "https://github.com/ChuXia2004/kira-ai-plugin-steam",
+        icon: "🎮"
       },
       {
-        name: "灵感收集箱",
-        description: "记录日常灵感与有趣的小实验，让想法慢慢发芽。",
-        tags: ["实验", "Creative"],
-        url: "https://github.com/",
-        icon: "📒"
+        name: "KiraAI API Balance",
+        description: "一行命令查清 API 余额，支持 DeepSeek、硅基流动、Kimi 与自定义中转站。",
+        tags: ["Python", "Plugin", "API"],
+        url: "https://github.com/ChuXia2004/KiraAI-plugin-api-balance",
+        icon: "💰"
       }
     ]
   },
